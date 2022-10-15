@@ -1,0 +1,11 @@
+on:
+  pull_request:
+jobs:
+  build-test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2     
+      - run: npm install
+      - run: npm run res:build                  
+      - run: npm run test:ci
