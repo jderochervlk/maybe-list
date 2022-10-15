@@ -7,7 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2     # checkout the repo
-      - run: npm install                   # install packages
+      - run: npm install
+      - run: npm run res:build                   # install packages
       - run: npm run test:ci                 # run tests (configured to use jest-junit reporter)
 
       - name: Test Report
