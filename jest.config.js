@@ -1,4 +1,5 @@
 module.exports = {
+    coveragePathIgnorePatterns: ["/node_modules/", "/external/"],
     moduleFileExtensions: ["js"],
     testEnvironment: "jsdom",
     testMatch: [

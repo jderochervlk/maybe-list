@@ -9,6 +9,7 @@
     "res:start": "rescript build -w",
     "start": "parcel src/index.html",
     "test": "jest",
+    "test:ci": "jest --bail --color --coverage",
     "test:watch": "jest --watch"
   },
   "repository": {

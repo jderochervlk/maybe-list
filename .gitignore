@@ -2,6 +2,7 @@
 .bsb.lock
 .merlin
 .parcel-cache
+coverage
 dist
 lib
 node_modules
