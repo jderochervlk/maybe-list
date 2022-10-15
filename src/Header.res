@@ -1,2 +1,6 @@
 @react.component
-let make = () => <h1> {React.string("Maybe List")} </h1>
+let make = () =>
+  <React.Fragment>
+    <h1> {React.string("Maybe List")} </h1>
+    <p>{React.string("A todo app that deletes items if they haven't been completed in 24 hours.")}</p>
+  </React.Fragment>
