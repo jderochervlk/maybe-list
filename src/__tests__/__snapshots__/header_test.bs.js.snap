@@ -5,5 +5,8 @@ exports[`displays text 1`] = `
   <h1>
     Maybe List
   </h1>
+  <p>
+    A todo app that deletes items if they haven't been completed in 24 hours.
+  </p>
 </div>
 `;
