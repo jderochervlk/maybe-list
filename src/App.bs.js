@@ -8,7 +8,8 @@ var Header = require("./Header.bs.js");
 var todos = [{
     text: "A thing to do",
     completed: false,
-    createdAt: 0
+    createdAt: 0,
+    id: 1
   }];
 
 function App(Props) {

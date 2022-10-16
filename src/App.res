@@ -1,4 +1,4 @@
-let todos: array<Todo.todo> = [{text: "A thing to do", completed: false, createdAt: 0}]
+let todos: array<Todo.todo> = [{text: "A thing to do", completed: false, createdAt: 0, id: 1}]
 
 @react.component
 let make = () => {
