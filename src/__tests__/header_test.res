@@ -3,5 +3,5 @@ open Expect
 open ReactTestingLibrary
 
 test("displays text", () => {
-  render(<Header />) |> container |> expect |> toMatchSnapshot
+  render(<Header />)->container->expect->toMatchSnapshot
 })
