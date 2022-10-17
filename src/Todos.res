@@ -8,12 +8,13 @@ let toggleTodo = (todos: array<todo>, todo) => {
 
 @react.component
 let make = (~todos: array<todo>) => {
-  let (items, setItems) = React.useState(_ => todos)
+  // TODO: split out completed TODOs from incomplete TODOs
+  let (items, setItems) = React.useState(_ => todos->List.fromArray)
 
   let handleClick = e => {
     let updatedTodo = {...e, completed: !e.completed}
-    setItems(_items => _items->Array.keep(x => x.id !== e.id)->Array.concat([updatedTodo]))
+    setItems(_items => _items->List.keep(x => x.id !== e.id)->List.add(updatedTodo)->List.sort((a, b) => a.completed === true ? 1 : -1))
   }
 
-  <ul> {items->Array.map(t => <TodoItem todo=t onClick=handleClick key=Js.String.make(t.id) />)->React.array} </ul>
+  <ul> {items->List.toArray->Array.map(t => <TodoItem todo=t onClick=handleClick key=Js.String.make(t.id) />)->React.array} </ul>
 }

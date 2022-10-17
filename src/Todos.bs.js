@@ -4,6 +4,7 @@
 var Curry = require("rescript/lib/js/curry.js");
 var React = require("react");
 var TodoItem = require("./TodoItem.bs.js");
+var Belt_List = require("rescript/lib/js/belt_List.js");
 var Belt_Array = require("rescript/lib/js/belt_Array.js");
 
 function toggleTodo(todos, todo) {
@@ -25,7 +26,7 @@ function toggleTodo(todos, todo) {
 function Todos(Props) {
   var todos = Props.todos;
   var match = React.useState(function () {
-        return todos;
+        return Belt_List.fromArray(todos);
       });
   var setItems = match[1];
   var handleClick = function (e) {
@@ -40,12 +41,18 @@ function Todos(Props) {
       id: updatedTodo_id
     };
     Curry._1(setItems, (function (_items) {
-            return Belt_Array.concat(Belt_Array.keep(_items, (function (x) {
-                              return x.id !== e.id;
-                            })), [updatedTodo]);
+            return Belt_List.sort(Belt_List.add(Belt_List.keep(_items, (function (x) {
+                                  return x.id !== e.id;
+                                })), updatedTodo), (function (a, b) {
+                          if (a.completed === true) {
+                            return 1;
+                          } else {
+                            return -1;
+                          }
+                        }));
           }));
   };
-  return React.createElement("ul", undefined, Belt_Array.map(match[0], (function (t) {
+  return React.createElement("ul", undefined, Belt_Array.map(Belt_List.toArray(match[0]), (function (t) {
                     return React.createElement(TodoItem.make, {
                                 todo: t,
                                 onClick: handleClick,
