@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`onClick is called when clicking 1`] = `
+<div>
+  <li
+    class=""
+  >
+    <input
+      type="checkbox"
+    />
+    one
+  </li>
+</div>
+`;

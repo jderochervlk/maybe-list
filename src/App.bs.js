@@ -5,11 +5,20 @@ var Todos = require("./Todos.bs.js");
 var React = require("react");
 var Header = require("./Header.bs.js");
 
-var todos = [{
+var todos = [
+  {
     text: "A thing to do",
     completed: false,
-    createdAt: 0
-  }];
+    createdAt: 0,
+    id: 1
+  },
+  {
+    text: "More things to do",
+    completed: false,
+    createdAt: 0,
+    id: 2
+  }
+];
 
 function App(Props) {
   return React.createElement("div", undefined, React.createElement(Header.make, {}), React.createElement(Todos.make, {
