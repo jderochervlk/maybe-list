@@ -5,23 +5,23 @@ open Expect
 open ReactTestingLibrary
 
 let todos: array<todo> = [
-  {id: 1, text: "one", createdAt: 1, completed: false},
-  {id: 2, text: "two", createdAt: 2, completed: false},
+  {id: 1, text: "one", createdAt: 1.0, completed: false},
+  {id: 2, text: "two", createdAt: 2.0, completed: false},
 ]
 
 test("toggle todo", () => {
   let results = toggleTodo(
     [
-      {id: 1, text: "one", createdAt: 1, completed: false},
-      {id: 2, text: "two", createdAt: 2, completed: false},
+      {id: 1, text: "one", createdAt: 1.0, completed: false},
+      {id: 2, text: "two", createdAt: 2.0, completed: false},
     ],
-    {id: 1, text: "one", createdAt: 1, completed: false},
+    {id: 1, text: "one", createdAt: 1.0, completed: false},
   )
   results
   ->expect
   ->toEqual([
-    {id: 2, text: "two", createdAt: 2, completed: false},
-    {id: 1, text: "one", createdAt: 1, completed: true},
+    {id: 2, text: "two", createdAt: 2.0, completed: false},
+    {id: 1, text: "one", createdAt: 1.0, completed: true},
   ])
 })
 

@@ -10,7 +10,7 @@ var ReactTestingLibrary = require("../external/ReactTestingLibrary.bs.js");
 var item = {
   text: "one",
   completed: false,
-  createdAt: 0,
+  createdAt: 1.0,
   id: 1
 };
 

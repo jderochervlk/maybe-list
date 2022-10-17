@@ -6,6 +6,9 @@ var React = require("react");
 var TodoItem = require("./TodoItem.bs.js");
 var Belt_List = require("rescript/lib/js/belt_List.js");
 var Belt_Array = require("rescript/lib/js/belt_Array.js");
+var CreateTodo = require("./CreateTodo.bs.js");
+var Belt_Option = require("rescript/lib/js/belt_Option.js");
+var Dom_storage = require("rescript/lib/js/dom_storage.js");
 
 function toggleTodo(todos, todo) {
   var updatedTodo_text = todo.text;
@@ -29,6 +32,7 @@ function Todos(Props) {
         return Belt_List.fromArray(todos);
       });
   var setItems = match[1];
+  var items = match[0];
   var handleClick = function (e) {
     var updatedTodo_text = e.text;
     var updatedTodo_completed = !e.completed;
@@ -43,7 +47,7 @@ function Todos(Props) {
     Curry._1(setItems, (function (_items) {
             return Belt_List.sort(Belt_List.add(Belt_List.keep(_items, (function (x) {
                                   return x.id !== e.id;
-                                })), updatedTodo), (function (a, b) {
+                                })), updatedTodo), (function (a, _b) {
                           if (a.completed === true) {
                             return 1;
                           } else {
@@ -52,13 +56,33 @@ function Todos(Props) {
                         }));
           }));
   };
-  return React.createElement("ul", undefined, Belt_Array.map(Belt_List.toArray(match[0]), (function (t) {
-                    return React.createElement(TodoItem.make, {
-                                todo: t,
-                                onClick: handleClick,
-                                key: String(t.id)
-                              });
-                  })));
+  var handleCreate = function (e) {
+    var time = Date.now();
+    var newTodo = {
+      text: e,
+      completed: false,
+      createdAt: time,
+      id: 0
+    };
+    Curry._1(setItems, (function (x) {
+            return Belt_List.add(x, newTodo);
+          }));
+    var string = JSON.stringify(Belt_List.toArray(items));
+    Belt_Option.forEach(string, (function (x) {
+            Dom_storage.setItem("todos", x, localStorage);
+          }));
+    var x = Dom_storage.getItem("todos", localStorage);
+    console.log(x);
+  };
+  return React.createElement("div", undefined, React.createElement(CreateTodo.make, {
+                  onCreate: handleCreate
+                }), React.createElement("ul", undefined, Belt_Array.map(Belt_List.toArray(items), (function (t) {
+                        return React.createElement(TodoItem.make, {
+                                    todo: t,
+                                    onClick: handleClick,
+                                    key: String(t.id)
+                                  });
+                      }))));
 }
 
 var make = Todos;

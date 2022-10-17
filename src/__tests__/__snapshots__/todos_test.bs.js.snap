@@ -2,39 +2,65 @@
 
 exports[`renders 1`] = `
 <div>
-  <ul>
-    <li
-      class=""
-    >
+  <div>
+    <form>
       <input
-        type="checkbox"
+        id="new-todo"
+        value=""
       />
-      one
-    </li>
-    <li
-      class=""
-    >
-      <input
-        type="checkbox"
-      />
-      two
-    </li>
-  </ul>
+      <button
+        role="submit"
+      >
+        add
+      </button>
+    </form>
+    <ul>
+      <li
+        class=""
+      >
+        <input
+          type="checkbox"
+        />
+        one
+      </li>
+      <li
+        class=""
+      >
+        <input
+          type="checkbox"
+        />
+        two
+      </li>
+    </ul>
+  </div>
 </div>
 `;
 
 exports[`updates on click 1`] = `
 <div>
-  <ul>
-    <li
-      class="completed"
-    >
+  <div>
+    <form>
       <input
-        checked=""
-        type="checkbox"
+        id="new-todo"
+        value=""
       />
-      one
-    </li>
-  </ul>
+      <button
+        role="submit"
+      >
+        add
+      </button>
+    </form>
+    <ul>
+      <li
+        class="completed"
+      >
+        <input
+          checked=""
+          type="checkbox"
+        />
+        one
+      </li>
+    </ul>
+  </div>
 </div>
 `;

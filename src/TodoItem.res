@@ -1,7 +1,7 @@
 type todo = {
   text: string,
   completed: bool,
-  createdAt: int,
+  createdAt: float,
   id: int,
 }
 

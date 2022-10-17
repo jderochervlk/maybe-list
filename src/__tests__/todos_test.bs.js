@@ -12,13 +12,13 @@ var todos = [
   {
     text: "one",
     completed: false,
-    createdAt: 1,
+    createdAt: 1.0,
     id: 1
   },
   {
     text: "two",
     completed: false,
-    createdAt: 2,
+    createdAt: 2.0,
     id: 2
   }
 ];
@@ -28,32 +28,32 @@ Jest.test("toggle todo", (function (param) {
               {
                 text: "one",
                 completed: false,
-                createdAt: 1,
+                createdAt: 1.0,
                 id: 1
               },
               {
                 text: "two",
                 completed: false,
-                createdAt: 2,
+                createdAt: 2.0,
                 id: 2
               }
             ], {
               text: "one",
               completed: false,
-              createdAt: 1,
+              createdAt: 1.0,
               id: 1
             });
         return Jest.Expect.toEqual(Jest.Expect.expect(results), [
                     {
                       text: "two",
                       completed: false,
-                      createdAt: 2,
+                      createdAt: 2.0,
                       id: 2
                     },
                     {
                       text: "one",
                       completed: true,
-                      createdAt: 1,
+                      createdAt: 1.0,
                       id: 1
                     }
                   ]);

@@ -4,23 +4,28 @@
 var Todos = require("./Todos.bs.js");
 var React = require("react");
 var Header = require("./Header.bs.js");
+var Dom_storage = require("rescript/lib/js/dom_storage.js");
 
 var todos = [
   {
     text: "A thing to do",
     completed: false,
-    createdAt: 0,
+    createdAt: 1.0,
     id: 1
   },
   {
     text: "More things to do",
     completed: false,
-    createdAt: 0,
+    createdAt: 2.0,
     id: 2
   }
 ];
 
 function App(Props) {
+  var t = React.useMemo(function () {
+        return Dom_storage.getItem("todos", localStorage);
+      });
+  console.log(t);
   return React.createElement("div", undefined, React.createElement(Header.make, {}), React.createElement(Todos.make, {
                   todos: todos
                 }));
