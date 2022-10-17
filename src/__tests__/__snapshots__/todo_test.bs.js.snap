@@ -2,12 +2,13 @@
 
 exports[`onClick is called when clicking 1`] = `
 <div>
-  <li>
-    one
+  <li
+    class=""
+  >
     <input
-      class="completed"
       type="checkbox"
     />
+    one
   </li>
 </div>
 `;

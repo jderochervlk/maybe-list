@@ -20,7 +20,6 @@ li {
     grid-template-columns: 25px auto;
     grid-gap: 1rem;
     margin-bottom: 1rem;
-
 }
 
 .completed {

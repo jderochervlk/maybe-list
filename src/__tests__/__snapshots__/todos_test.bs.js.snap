@@ -3,19 +3,21 @@
 exports[`renders 1`] = `
 <div>
   <ul>
-    <li>
+    <li
+      class=""
+    >
+      <input
+        type="checkbox"
+      />
       one
-      <input
-        class="completed"
-        type="checkbox"
-      />
     </li>
-    <li>
-      two
+    <li
+      class=""
+    >
       <input
-        class="completed"
         type="checkbox"
       />
+      two
     </li>
   </ul>
 </div>
@@ -24,13 +26,14 @@ exports[`renders 1`] = `
 exports[`updates on click 1`] = `
 <div>
   <ul>
-    <li>
-      one
+    <li
+      class="completed"
+    >
       <input
         checked=""
-        class=""
         type="checkbox"
       />
+      one
     </li>
   </ul>
 </div>
