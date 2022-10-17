@@ -10,10 +10,11 @@ function TodoItem(Props) {
   var handleClick = function (__) {
     Curry._1(onClick, todo);
   };
-  var $$class = todo.completed === true ? "" : "completed";
-  return React.createElement("li", undefined, todo.text, React.createElement("input", {
+  var $$class = todo.completed === false ? "" : "completed";
+  return React.createElement("li", {
+              className: $$class
+            }, React.createElement("input", {
                   defaultChecked: todo.completed,
-                  className: $$class,
                   type: "checkbox",
                   onClick: handleClick
                 }));

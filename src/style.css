@@ -7,3 +7,12 @@ body {
     font-size: 18px;
     margin: auto;
 }
+
+ul {
+    display: grid;
+    width: 100%;
+}
+
+.completed {
+    text-decoration: line-through;
+}
