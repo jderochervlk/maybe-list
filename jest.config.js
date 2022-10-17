@@ -1,4 +1,5 @@
 module.exports = {
+    coverageReporters: ["text", "html"],
     coveragePathIgnorePatterns: ["/node_modules/", "/external/"],
     moduleFileExtensions: ["js"],
     testEnvironment: "jsdom",

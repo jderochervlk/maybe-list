@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<div>
+  <ul>
+    <li>
+      one
+      <input
+        class="completed"
+        type="checkbox"
+      />
+    </li>
+    <li>
+      two
+      <input
+        class="completed"
+        type="checkbox"
+      />
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`updates on click 1`] = `
+<div>
+  <ul>
+    <li>
+      one
+      <input
+        checked=""
+        class=""
+        type="checkbox"
+      />
+    </li>
+  </ul>
+</div>
+`;

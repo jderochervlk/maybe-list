@@ -10,7 +10,7 @@
     "start": "parcel src/index.html",
     "test": "jest",
     "test:ci": "jest --bail --color --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch --coverage"
   },
   "repository": {
     "type": "git",
