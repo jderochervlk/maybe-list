@@ -11,8 +11,19 @@ body {
 ul {
     display: grid;
     width: 100%;
+    list-style: none;
+    padding-left: 0;
+}
+
+li {
+    display: grid;
+    grid-template-columns: 25px auto;
+    grid-gap: 1rem;
+    margin-bottom: 1rem;
+
 }
 
 .completed {
     text-decoration: line-through;
+    color: #444;
 }

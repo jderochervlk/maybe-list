@@ -17,7 +17,7 @@ function TodoItem(Props) {
                   defaultChecked: todo.completed,
                   type: "checkbox",
                   onClick: handleClick
-                }));
+                }), todo.text);
 }
 
 var make = TodoItem;
