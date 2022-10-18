@@ -10,26 +10,22 @@ var CreateTodo = require("./CreateTodo.bs.js");
 var Belt_Option = require("rescript/lib/js/belt_Option.js");
 var Dom_storage = require("rescript/lib/js/dom_storage.js");
 
-function toggleTodo(todos, todo) {
-  var updatedTodo_text = todo.text;
-  var updatedTodo_completed = !todo.completed;
-  var updatedTodo_createdAt = todo.createdAt;
-  var updatedTodo_id = todo.id;
-  var updatedTodo = {
-    text: updatedTodo_text,
-    completed: updatedTodo_completed,
-    createdAt: updatedTodo_createdAt,
-    id: updatedTodo_id
-  };
-  return Belt_Array.concat(Belt_Array.keep(todos, (function (x) {
-                    return x.id !== todo.id;
-                  })), [updatedTodo]);
+function initTodos(todos) {
+  if (todos !== undefined) {
+    return todos;
+  } else {
+    return /* [] */0;
+  }
 }
 
 function Todos(Props) {
   var todos = Props.todos;
   var match = React.useState(function () {
-        return Belt_List.fromArray(todos);
+        if (todos !== undefined) {
+          return todos;
+        } else {
+          return /* [] */0;
+        }
       });
   var setItems = match[1];
   var items = match[0];
@@ -67,13 +63,15 @@ function Todos(Props) {
     Curry._1(setItems, (function (x) {
             return Belt_List.add(x, newTodo);
           }));
-    var string = JSON.stringify(Belt_List.toArray(items));
-    Belt_Option.forEach(string, (function (x) {
-            Dom_storage.setItem("todos", x, localStorage);
-          }));
-    var x = Dom_storage.getItem("todos", localStorage);
-    console.log(x);
   };
+  React.useEffect((function () {
+          var string = JSON.stringify(Belt_List.toArray(items));
+          Belt_Option.forEach(string, (function (x) {
+                  Dom_storage.setItem("todos", x, localStorage);
+                }));
+          var x = Dom_storage.getItem("todos", localStorage);
+          console.log(x);
+        }), [items]);
   return React.createElement("div", undefined, React.createElement(CreateTodo.make, {
                   onCreate: handleCreate
                 }), React.createElement("ul", undefined, Belt_Array.map(Belt_List.toArray(items), (function (t) {
@@ -87,6 +85,6 @@ function Todos(Props) {
 
 var make = Todos;
 
-exports.toggleTodo = toggleTodo;
+exports.initTodos = initTodos;
 exports.make = make;
 /* react Not a pure module */

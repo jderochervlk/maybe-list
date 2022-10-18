@@ -1,15 +1,16 @@
 open TodoItem
 open Belt
 
-let toggleTodo = (todos: array<todo>, todo) => {
-  let updatedTodo = {...todo, completed: !todo.completed}
-  todos->Array.keep(x => x.id !== todo.id)->Array.concat([updatedTodo])
-}
+let initTodos = (todos: option<list<todo>>) =>
+  switch todos {
+  | Some(t) => t
+  | None => list{}
+  }
 
 @react.component
-let make = (~todos: array<todo>) => {
+let make = (~todos: option<list<todo>>) => {
   // TODO: split out completed TODOs from incomplete TODOs
-  let (items, setItems) = React.useState(_ => todos->List.fromArray)
+  let (items, setItems) = React.useState(_ => todos->initTodos)
 
   let handleClick = e => {
     let updatedTodo = {...e, completed: !e.completed}
@@ -30,12 +31,16 @@ let make = (~todos: array<todo>) => {
       id: 0,
     }
     setItems(x => x->List.add(newTodo))
+  }
+
+  React.useEffect1(() => {
     let string = items->List.toArray->Js.Json.stringifyAny
     string->Option.forEach(x => Dom.Storage.setItem("todos", x, Dom_storage.localStorage))
 
     let x = Dom.Storage.getItem("todos", Dom_storage.localStorage)
     Js.log(x)
-  }
+    None
+  }, [items])
 
   <div>
     <CreateTodo onCreate=handleCreate />

@@ -4,28 +4,16 @@
 var Todos = require("./Todos.bs.js");
 var React = require("react");
 var Header = require("./Header.bs.js");
+var Belt_List = require("rescript/lib/js/belt_List.js");
+var Belt_Option = require("rescript/lib/js/belt_Option.js");
 var Dom_storage = require("rescript/lib/js/dom_storage.js");
 
-var todos = [
-  {
-    text: "A thing to do",
-    completed: false,
-    createdAt: 1.0,
-    id: 1
-  },
-  {
-    text: "More things to do",
-    completed: false,
-    createdAt: 2.0,
-    id: 2
-  }
-];
-
 function App(Props) {
-  var t = React.useMemo(function () {
-        return Dom_storage.getItem("todos", localStorage);
+  var todos = React.useMemo(function () {
+        return Belt_Option.map(Belt_Option.map(Dom_storage.getItem("todos", localStorage), (function (prim) {
+                          return JSON.parse(prim);
+                        })), Belt_List.fromArray);
       });
-  console.log(t);
   return React.createElement("div", undefined, React.createElement(Header.make, {}), React.createElement(Todos.make, {
                   todos: todos
                 }));
@@ -33,6 +21,5 @@ function App(Props) {
 
 var make = App;
 
-exports.todos = todos;
 exports.make = make;
 /* Todos Not a pure module */

@@ -3,35 +3,21 @@ open TodoItem
 open Jest
 open Expect
 open ReactTestingLibrary
+open Belt
 
-let todos: array<todo> = [
+let todos: list<todo> = list{
   {id: 1, text: "one", createdAt: 1.0, completed: false},
   {id: 2, text: "two", createdAt: 2.0, completed: false},
-]
+}
 
-test("toggle todo", () => {
-  let results = toggleTodo(
-    [
-      {id: 1, text: "one", createdAt: 1.0, completed: false},
-      {id: 2, text: "two", createdAt: 2.0, completed: false},
-    ],
-    {id: 1, text: "one", createdAt: 1.0, completed: false},
-  )
-  results
-  ->expect
-  ->toEqual([
-    {id: 2, text: "two", createdAt: 2.0, completed: false},
-    {id: 1, text: "one", createdAt: 1.0, completed: true},
-  ])
-})
 
 test("renders", () => {
-  let result = render(<Todos todos />)
+  let result = render(<Todos todos=Some(todos) />)
   result->container->expect->toMatchSnapshot
 })
 
 test("updates on click", () => {
-    let result = render(<Todos todos=[todos[0]] />)
+    let result = render(<Todos todos=Some(list{{id: 1, text: "one", createdAt: 1.0, completed: false}}) />)
       act(() => result -> getByRole(~matcher=#Str("checkbox"))->FireEvent.click->ignore)
       result->container->expect->toMatchSnapshot
 })
