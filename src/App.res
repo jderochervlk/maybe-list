@@ -13,6 +13,6 @@ let make = () => {
 
   <div>
     <Header />
-    <Todos todos />
+    <TodosContainer todos />
   </div>
 }

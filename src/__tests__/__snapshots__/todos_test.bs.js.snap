@@ -23,14 +23,6 @@ exports[`renders 1`] = `
         />
         one
       </li>
-      <li
-        class=""
-      >
-        <input
-          type="checkbox"
-        />
-        two
-      </li>
     </ul>
   </div>
 </div>
@@ -50,17 +42,7 @@ exports[`updates on click 1`] = `
         add
       </button>
     </form>
-    <ul>
-      <li
-        class="completed"
-      >
-        <input
-          checked=""
-          type="checkbox"
-        />
-        one
-      </li>
-    </ul>
+    <ul />
   </div>
 </div>
 `;
