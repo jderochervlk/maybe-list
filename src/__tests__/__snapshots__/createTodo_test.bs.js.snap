@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Adding a todo 1`] = `
+<div>
+  <div
+    class="css-1239x0i"
+  >
+    <form>
+      <div
+        class="css-1n3bkpz"
+      >
+        <input
+          class="chakra-input css-0"
+          id="new-todo"
+          placeholder="enter task name"
+          value=""
+        />
+        <button
+          class="chakra-button css-4xx2wk"
+          disabled=""
+          role="submit"
+          type="submit"
+        >
+          add new task
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+`;

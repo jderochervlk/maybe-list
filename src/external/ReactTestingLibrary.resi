@@ -82,14 +82,14 @@ type renderOptions = {
   "queries": Js.undefined<queries>,
 }
 
-@bs.module("@testing-library/react")
+@module("@testing-library/react")
 external cleanup: unit => unit = "cleanup"
 
 let act: (unit => unit) => unit
 
-@bs.get external container: renderResult => Dom.element = "container"
+@get external container: renderResult => Dom.element = "container"
 
-@bs.get external baseElement: renderResult => Dom.element = "baseElement"
+@get external baseElement: renderResult => Dom.element = "baseElement"
 
 @bs.send.pipe(: renderResult) external unmount: unit => bool = "unmount"
 

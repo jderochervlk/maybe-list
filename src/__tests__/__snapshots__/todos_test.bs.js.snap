@@ -2,65 +2,161 @@
 
 exports[`renders 1`] = `
 <div>
-  <div>
+  <div
+    class="css-1239x0i"
+  >
     <form>
-      <input
-        id="new-todo"
-        value=""
-      />
-      <button
-        role="submit"
+      <div
+        class="css-1n3bkpz"
       >
-        add
-      </button>
+        <input
+          class="chakra-input css-0"
+          id="new-todo"
+          placeholder="enter task name"
+          value=""
+        />
+        <button
+          class="chakra-button css-4xx2wk"
+          disabled=""
+          role="submit"
+          type="submit"
+        >
+          add new task
+        </button>
+      </div>
     </form>
-    <ul>
-      <li
-        class=""
+  </div>
+  <div
+    class="css-1pet8dv"
+  >
+    <div
+      class="chakra-stack css-2sgdeq"
+    >
+      <label
+        class="chakra-checkbox css-1elxtiq"
       >
         <input
+          class="chakra-checkbox__input"
+          style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
           type="checkbox"
+          value=""
         />
-        one
-      </li>
-      <li
-        class=""
+        <span
+          aria-hidden="true"
+          class="chakra-checkbox__control css-dnty2r"
+        />
+        <span
+          class="chakra-checkbox__label css-1oeb2oe"
+        >
+          <p
+            class=""
+          >
+            one
+          </p>
+        </span>
+      </label>
+      <label
+        class="chakra-checkbox css-1elxtiq"
       >
         <input
+          class="chakra-checkbox__input"
+          style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
           type="checkbox"
+          value=""
         />
-        two
-      </li>
-    </ul>
+        <span
+          aria-hidden="true"
+          class="chakra-checkbox__control css-dnty2r"
+        />
+        <span
+          class="chakra-checkbox__label css-1oeb2oe"
+        >
+          <p
+            class=""
+          >
+            two
+          </p>
+        </span>
+      </label>
+    </div>
   </div>
 </div>
 `;
 
 exports[`updates on click 1`] = `
 <div>
-  <div>
+  <div
+    class="css-1239x0i"
+  >
     <form>
-      <input
-        id="new-todo"
-        value=""
-      />
-      <button
-        role="submit"
-      >
-        add
-      </button>
-    </form>
-    <ul>
-      <li
-        class="completed"
+      <div
+        class="css-1n3bkpz"
       >
         <input
-          checked=""
-          type="checkbox"
+          class="chakra-input css-0"
+          id="new-todo"
+          placeholder="enter task name"
+          value=""
         />
-        one
-      </li>
-    </ul>
+        <button
+          class="chakra-button css-4xx2wk"
+          disabled=""
+          role="submit"
+          type="submit"
+        >
+          add new task
+        </button>
+      </div>
+    </form>
+  </div>
+  <div
+    class="css-1pet8dv"
+  >
+    <div
+      class="chakra-stack css-2sgdeq"
+    >
+      <label
+        class="chakra-checkbox css-1elxtiq"
+        data-checked=""
+      >
+        <input
+          class="chakra-checkbox__input"
+          style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
+          type="checkbox"
+          value=""
+        />
+        <span
+          aria-hidden="true"
+          class="chakra-checkbox__control css-dnty2r"
+          data-checked=""
+        >
+          <div
+            class="css-0"
+            style="display: flex; align-items: center; justify-content: center; height: 100%;"
+          >
+            <svg
+              class="css-vrf7dt"
+              style="fill: none; stroke-width: 2; stroke: currentColor; stroke-dasharray: 16;"
+              viewBox="0 0 12 10"
+            >
+              <polyline
+                points="1.5 6 4.5 9 10.5 1"
+              />
+            </svg>
+          </div>
+        </span>
+        <span
+          class="chakra-checkbox__label css-1oeb2oe"
+          data-checked=""
+        >
+          <p
+            class="completed"
+          >
+            one
+          </p>
+        </span>
+      </label>
+    </div>
   </div>
 </div>
 `;

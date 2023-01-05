@@ -2,13 +2,28 @@
 
 exports[`onClick is called when clicking 1`] = `
 <div>
-  <li
-    class=""
+  <label
+    class="chakra-checkbox css-1elxtiq"
   >
     <input
+      class="chakra-checkbox__input"
+      style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; width: 1px; margin: -1px; padding: 0px; overflow: hidden; white-space: nowrap; position: absolute;"
       type="checkbox"
+      value=""
     />
-    one
-  </li>
+    <span
+      aria-hidden="true"
+      class="chakra-checkbox__control css-dnty2r"
+    />
+    <span
+      class="chakra-checkbox__label css-1oeb2oe"
+    >
+      <p
+        class=""
+      >
+        one
+      </p>
+    </span>
+  </label>
 </div>
 `;
