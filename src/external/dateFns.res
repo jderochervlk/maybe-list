@@ -1,1 +1,2 @@
-@module("date-fns") external differenceInHours: (float, float) => float = "differenceInHours"
+@module("date-fns/differenceInHours")
+external differenceInHours: (float, float) => float = "default"

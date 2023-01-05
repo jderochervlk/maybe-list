@@ -5,12 +5,12 @@ var Curry = require("rescript/lib/js/curry.js");
 var React = require("react");
 var Js_array = require("rescript/lib/js/js_array.js");
 var TodoItem = require("./TodoItem.bs.js");
-var DateFns = require("date-fns");
 var Belt_Array = require("rescript/lib/js/belt_Array.js");
 var CreateTodo = require("./CreateTodo.bs.js");
 var Belt_Option = require("rescript/lib/js/belt_Option.js");
 var Dom_storage = require("rescript/lib/js/dom_storage.js");
 var React$1 = require("@chakra-ui/react");
+var DifferenceInHours = require("date-fns/differenceInHours").default;
 
 function initTodos(todos) {
   if (todos !== undefined) {
@@ -87,7 +87,7 @@ function Todos(Props) {
   React.useEffect((function () {
           Curry._1(setItems, (function (t) {
                   return t.filter(function (x) {
-                              return DateFns.differenceInHours(x.createdAt, Date.now()) < 24.00;
+                              return DifferenceInHours(x.createdAt, Date.now()) < 24.00;
                             });
                 }));
         }), []);
