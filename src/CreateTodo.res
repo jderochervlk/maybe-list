@@ -13,7 +13,9 @@ let make = (~onCreate) => {
       onCreate(value)
       setValue(_ => "")
     }}>
-    <input id="new-todo" onChange=handleChange value/>
-    <button role="submit"> {React.string("add")} </button>
+    <div className="new-todo">
+      <input id="new-todo" onChange=handleChange value autoFocus=true placeholder="new task" />
+      <button role="submit"> {React.string("add new task")} </button>
+    </div>
   </form>
 }

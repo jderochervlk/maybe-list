@@ -13,11 +13,15 @@ function TodoItem(Props) {
   var $$class = todo.completed === false ? "" : "completed";
   return React.createElement("li", {
               className: $$class
-            }, React.createElement("input", {
-                  defaultChecked: todo.completed,
-                  type: "checkbox",
-                  onClick: handleClick
-                }), todo.text);
+            }, React.createElement("label", {
+                  className: "container"
+                }, todo.text, React.createElement("input", {
+                      defaultChecked: todo.completed,
+                      type: "checkbox",
+                      onClick: handleClick
+                    }), React.createElement("span", {
+                      className: "checkmark"
+                    })));
 }
 
 var make = TodoItem;

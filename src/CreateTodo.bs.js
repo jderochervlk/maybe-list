@@ -25,13 +25,17 @@ function CreateTodo(Props) {
                           return "";
                         }));
                 })
-            }, React.createElement("input", {
-                  id: "new-todo",
-                  value: value,
-                  onChange: handleChange
-                }), React.createElement("button", {
-                  role: "submit"
-                }, "add"));
+            }, React.createElement("div", {
+                  className: "new-todo"
+                }, React.createElement("input", {
+                      id: "new-todo",
+                      autoFocus: true,
+                      placeholder: "new task",
+                      value: value,
+                      onChange: handleChange
+                    }), React.createElement("button", {
+                      role: "submit"
+                    }, "add new task")));
 }
 
 var make = CreateTodo;

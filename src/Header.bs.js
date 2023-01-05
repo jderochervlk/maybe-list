@@ -6,7 +6,9 @@ var React = require("react");
 function Header(Props) {
   return React.createElement(React.Fragment, {
               children: null
-            }, React.createElement("h1", undefined, "Maybe List"), React.createElement("p", undefined, "A todo app that deletes items if they haven't been completed in 24 hours."));
+            }, React.createElement("h1", {
+                  className: "header"
+                }, "Maybe List"), React.createElement("p", undefined, "A todo app that deletes items if they haven't been completed in 24 hours."));
 }
 
 var make = Header;
