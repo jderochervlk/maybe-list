@@ -24,8 +24,7 @@ let make = (~onCreate) => {
           autoFocus=true
           placeholder="enter task name"
         />
-        <Chakra.Button
-          role="submit" \"type"="submit" colorScheme="green" isDisabled={isEmpty(value)}>
+        <Chakra.Button \"type"="submit" colorScheme="green" isDisabled={isEmpty(value)}>
           {React.string("add new task")}
         </Chakra.Button>
       </Chakra.Grid>

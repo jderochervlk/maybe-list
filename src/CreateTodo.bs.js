@@ -46,7 +46,6 @@ function CreateTodo(Props) {
                             children: "add new task",
                             colorScheme: "green",
                             type: "submit",
-                            role: "submit",
                             isDisabled: value === ""
                           }))),
               maxW: "800px",
