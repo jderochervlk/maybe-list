@@ -4,15 +4,14 @@
 var Todos = require("./Todos.bs.js");
 var React = require("react");
 var Header = require("./Header.bs.js");
-var Belt_List = require("rescript/lib/js/belt_List.js");
 var Belt_Option = require("rescript/lib/js/belt_Option.js");
 var Dom_storage = require("rescript/lib/js/dom_storage.js");
 
 function App(Props) {
   var todos = React.useMemo(function () {
-        return Belt_Option.map(Belt_Option.map(Dom_storage.getItem("todos", localStorage), (function (prim) {
-                          return JSON.parse(prim);
-                        })), Belt_List.fromArray);
+        return Belt_Option.map(Dom_storage.getItem("todos", localStorage), (function (prim) {
+                      return JSON.parse(prim);
+                    }));
       });
   return React.createElement("div", undefined, React.createElement(Header.make, {}), React.createElement(Todos.make, {
                   todos: todos

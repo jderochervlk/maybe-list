@@ -7,23 +7,20 @@ var Todos = require("../Todos.bs.js");
 var React = require("react");
 var ReactTestingLibrary = require("../external/ReactTestingLibrary.bs.js");
 
-var todos = {
-  hd: {
+var todos = [
+  {
     text: "one",
     completed: false,
     createdAt: 1.0,
     id: 1
   },
-  tl: {
-    hd: {
-      text: "two",
-      completed: false,
-      createdAt: 2.0,
-      id: 2
-    },
-    tl: /* [] */0
+  {
+    text: "two",
+    completed: false,
+    createdAt: 2.0,
+    id: 2
   }
-};
+];
 
 Jest.test("renders", (function (param) {
         var result = ReactTestingLibrary.render(undefined, undefined, undefined, undefined, undefined, React.createElement(Todos.make, {
@@ -34,15 +31,12 @@ Jest.test("renders", (function (param) {
 
 Jest.test("updates on click", (function (param) {
         var result = ReactTestingLibrary.render(undefined, undefined, undefined, undefined, undefined, React.createElement(Todos.make, {
-                  todos: {
-                    hd: {
+                  todos: [{
                       text: "one",
                       completed: false,
                       createdAt: 1.0,
                       id: 1
-                    },
-                    tl: /* [] */0
-                  }
+                    }]
                 }));
         ReactTestingLibrary.act(function (param) {
               Curry._2(ReactTestingLibrary.FireEvent.click, undefined, ReactTestingLibrary.getByRole({

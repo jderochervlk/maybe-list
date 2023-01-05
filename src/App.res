@@ -8,7 +8,6 @@ let make = () => {
   let todos = React.useMemo(() => {
     Dom.Storage.getItem("todos", Dom_storage.localStorage)
     ->Option.map(parseIntoTodos)
-    ->Option.map(List.fromArray)
   })
 
   <div>

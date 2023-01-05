@@ -4,7 +4,6 @@
 var Curry = require("rescript/lib/js/curry.js");
 var React = require("react");
 var TodoItem = require("./TodoItem.bs.js");
-var Belt_List = require("rescript/lib/js/belt_List.js");
 var Belt_Array = require("rescript/lib/js/belt_Array.js");
 var CreateTodo = require("./CreateTodo.bs.js");
 var Belt_Option = require("rescript/lib/js/belt_Option.js");
@@ -14,7 +13,32 @@ function initTodos(todos) {
   if (todos !== undefined) {
     return todos;
   } else {
-    return /* [] */0;
+    return [];
+  }
+}
+
+function sort(t) {
+  return t.sort(function (t3, param) {
+              if (t3.completed) {
+                return 1;
+              } else {
+                return -1;
+              }
+            });
+}
+
+function nextId(t) {
+  var id = Belt_Array.get(t.sort(function (x1, x2) {
+            if (x1.id < x2.id) {
+              return 1;
+            } else {
+              return -1;
+            }
+          }), 0);
+  if (id !== undefined) {
+    return id.id + 1 | 0;
+  } else {
+    return 0;
   }
 }
 
@@ -24,67 +48,58 @@ function Todos(Props) {
         if (todos !== undefined) {
           return todos;
         } else {
-          return /* [] */0;
+          return [];
         }
       });
   var setItems = match[1];
   var items = match[0];
   var handleClick = function (e) {
-    var updatedTodo_text = e.text;
-    var updatedTodo_completed = !e.completed;
-    var updatedTodo_createdAt = e.createdAt;
-    var updatedTodo_id = e.id;
-    var updatedTodo = {
-      text: updatedTodo_text,
-      completed: updatedTodo_completed,
-      createdAt: updatedTodo_createdAt,
-      id: updatedTodo_id
-    };
+    console.log(items);
     Curry._1(setItems, (function (_items) {
-            return Belt_List.sort(Belt_List.add(Belt_List.keep(_items, (function (x) {
-                                  return x.id !== e.id;
-                                })), updatedTodo), (function (a, _b) {
-                          if (a.completed === true) {
-                            return 1;
-                          } else {
-                            return -1;
-                          }
-                        }));
+            return sort(_items.filter(function (t) {
+                              return t.id !== e.id;
+                            }).concat([{
+                              text: e.text,
+                              completed: !e.completed,
+                              createdAt: e.createdAt,
+                              id: e.id
+                            }]));
           }));
   };
   var handleCreate = function (e) {
     var time = Date.now();
+    var newTodo_id = nextId(items);
     var newTodo = {
       text: e,
       completed: false,
       createdAt: time,
-      id: 0
+      id: newTodo_id
     };
     Curry._1(setItems, (function (x) {
-            return Belt_List.add(x, newTodo);
+            return sort(x.concat([newTodo]));
           }));
   };
   React.useEffect((function () {
-          var string = JSON.stringify(Belt_List.toArray(items));
+          var string = JSON.stringify(items);
           Belt_Option.forEach(string, (function (x) {
                   Dom_storage.setItem("todos", x, localStorage);
                 }));
-          var x = Dom_storage.getItem("todos", localStorage);
-          console.log(x);
         }), [items]);
   return React.createElement("div", undefined, React.createElement(CreateTodo.make, {
                   onCreate: handleCreate
-                }), React.createElement("ul", undefined, Belt_Array.map(Belt_List.toArray(items), (function (t) {
-                        return React.createElement(TodoItem.make, {
-                                    todo: t,
-                                    onClick: handleClick,
-                                    key: String(t.id)
-                                  });
-                      }))));
+                }), React.createElement("ul", undefined, items.map(function (t) {
+                      return React.createElement(TodoItem.make, {
+                                  todo: t,
+                                  onClick: handleClick,
+                                  key: String(t.text)
+                                });
+                    })));
 }
 
 var make = Todos;
 
 exports.initTodos = initTodos;
+exports.sort = sort;
+exports.nextId = nextId;
 exports.make = make;
 /* react Not a pure module */

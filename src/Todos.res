@@ -1,24 +1,36 @@
 open TodoItem
-open Belt
 
-let initTodos = (todos: option<list<todo>>) =>
+let initTodos = (todos: option<array<todo>>) =>
   switch todos {
   | Some(t) => t
-  | None => list{}
+  | None => []
   }
 
+let sort = t => {
+  let t2 = t
+  t2->Js.Array2.sortInPlaceWith((t3, _) => t3.completed ? 1 : -1)
+}
+
+let nextId = t => {
+  let _t = t
+  let id = _t->Js.Array2.sortInPlaceWith((x1, x2) => x1.id < x2.id ? 1 : -1)->Belt.Array.get(0)
+  switch id {
+  | Some(ix) => ix.id + 1
+  | None => 0
+  }
+}
+
 @react.component
-let make = (~todos: option<list<todo>>) => {
-  // TODO: split out completed TODOs from incomplete TODOs
-  let (items, setItems) = React.useState(_ => todos->initTodos)
+let make = (~todos: option<array<todo>>) => {
+  let (items: array<TodoItem.todo>, setItems) = React.useState(_ => todos->initTodos)
 
   let handleClick = e => {
-    let updatedTodo = {...e, completed: !e.completed}
+    Js.Console.log(items)
     setItems(_items =>
       _items
-      ->List.keep(x => x.id !== e.id)
-      ->List.add(updatedTodo)
-      ->List.sort((a, _b) => a.completed === true ? 1 : -1)
+      ->Js.Array2.filter(t => t.id != e.id)
+      ->Js.Array2.concat([{...e, completed: !e.completed}])
+      ->sort
     )
   }
 
@@ -28,17 +40,14 @@ let make = (~todos: option<list<todo>>) => {
       text: e,
       createdAt: time,
       completed: false,
-      id: 0,
+      id: nextId(items),
     }
-    setItems(x => x->List.add(newTodo))
+    setItems(x => x->Js.Array2.concat([newTodo])->sort)
   }
 
   React.useEffect1(() => {
-    let string = items->List.toArray->Js.Json.stringifyAny
-    string->Option.forEach(x => Dom.Storage.setItem("todos", x, Dom_storage.localStorage))
-
-    let x = Dom.Storage.getItem("todos", Dom_storage.localStorage)
-    Js.log(x)
+    let string = items->Js.Json.stringifyAny
+    string->Belt.Option.forEach(x => Dom.Storage.setItem("todos", x, Dom_storage.localStorage))
     None
   }, [items])
 
@@ -46,8 +55,7 @@ let make = (~todos: option<list<todo>>) => {
     <CreateTodo onCreate=handleCreate />
     <ul>
       {items
-      ->List.toArray
-      ->Array.map(t => <TodoItem todo=t onClick=handleClick key={Js.String.make(t.id)} />)
+      ->Js.Array2.map(t => <TodoItem todo=t onClick=handleClick key={Js.String.make(t.text)} />)
       ->React.array}
     </ul>
   </div>
