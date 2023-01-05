@@ -8,7 +8,16 @@ let initTodos = (todos: option<array<todo>>) =>
 
 let sort = t => {
   let t2 = t
-  t2->Js.Array2.sortInPlaceWith((t3, _) => t3.completed ? 1 : -1)
+  t2->Js.Array2.sortInPlaceWith((x1, x2) => {
+    let bothEqual = x1.completed == x2.completed
+    if bothEqual {
+      0
+    } else if x1.completed {
+      1
+    } else {
+      -1
+    }
+  })
 }
 
 let nextId = t => {
@@ -28,7 +37,7 @@ let make = (~todos: option<array<todo>>) => {
     setItems(_items =>
       _items
       ->Js.Array2.filter(t => t.id != e.id)
-      ->Js.Array2.concat([{...e, completed: !e.completed}])
+      ->Js.Array.concat([{...e, completed: !e.completed}])
       ->sort
     )
   }

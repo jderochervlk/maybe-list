@@ -3,6 +3,7 @@
 
 var Curry = require("rescript/lib/js/curry.js");
 var React = require("react");
+var Js_array = require("rescript/lib/js/js_array.js");
 var TodoItem = require("./TodoItem.bs.js");
 var DateFns = require("date-fns");
 var Belt_Array = require("rescript/lib/js/belt_Array.js");
@@ -20,8 +21,11 @@ function initTodos(todos) {
 }
 
 function sort(t) {
-  return t.sort(function (t3, param) {
-              if (t3.completed) {
+  return t.sort(function (x1, x2) {
+              var bothEqual = x1.completed === x2.completed;
+              if (bothEqual) {
+                return 0;
+              } else if (x1.completed) {
                 return 1;
               } else {
                 return -1;
@@ -57,9 +61,9 @@ function Todos(Props) {
   var items = match[0];
   var handleClick = function (e) {
     Curry._1(setItems, (function (_items) {
-            return sort(_items.filter(function (t) {
-                              return t.id !== e.id;
-                            }).concat([{
+            return sort(Js_array.concat(_items.filter(function (t) {
+                                return t.id !== e.id;
+                              }), [{
                               text: e.text,
                               completed: !e.completed,
                               createdAt: e.createdAt,
