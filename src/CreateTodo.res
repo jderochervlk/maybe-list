@@ -12,7 +12,6 @@ let make = (~onCreate) => {
     <form
       onSubmit={e => {
         ReactEvent.Form.preventDefault(e)
-
         onCreate(value)
         setValue(_ => "")
       }}>
