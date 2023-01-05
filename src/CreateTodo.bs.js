@@ -3,6 +3,7 @@
 
 var Curry = require("rescript/lib/js/curry.js");
 var React = require("react");
+var React$1 = require("@chakra-ui/react");
 
 function CreateTodo(Props) {
   var onCreate = Props.onCreate;
@@ -17,25 +18,35 @@ function CreateTodo(Props) {
             return t.value;
           }));
   };
-  return React.createElement("form", {
-              onSubmit: (function (e) {
-                  e.preventDefault();
-                  Curry._1(onCreate, value);
-                  Curry._1(setValue, (function (param) {
-                          return "";
-                        }));
-                })
-            }, React.createElement("div", {
-                  className: "new-todo"
-                }, React.createElement("input", {
-                      id: "new-todo",
-                      autoFocus: true,
-                      placeholder: "new task",
-                      value: value,
-                      onChange: handleChange
-                    }), React.createElement("button", {
-                      role: "submit"
-                    }, "add new task")));
+  return React.createElement(React$1.Box, {
+              children: React.createElement("form", {
+                    onSubmit: (function (e) {
+                        e.preventDefault();
+                        Curry._1(onCreate, value);
+                        Curry._1(setValue, (function (param) {
+                                return "";
+                              }));
+                      })
+                  }, React.createElement(React$1.Grid, {
+                        children: null,
+                        templateColumns: "3fr 1fr",
+                        gap: 4
+                      }, React.createElement(React$1.Input, {
+                            placeholder: "new task",
+                            value: value,
+                            colorScheme: "green",
+                            autoFocus: true,
+                            id: "new-todo",
+                            onChange: handleChange
+                          }), React.createElement(React$1.Button, {
+                            children: "add new task",
+                            colorScheme: "green",
+                            type: "submit",
+                            role: "submit"
+                          }))),
+              maxW: "800px",
+              m: "3rem auto"
+            });
 }
 
 var make = CreateTodo;

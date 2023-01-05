@@ -9,6 +9,7 @@ var Belt_Array = require("rescript/lib/js/belt_Array.js");
 var CreateTodo = require("./CreateTodo.bs.js");
 var Belt_Option = require("rescript/lib/js/belt_Option.js");
 var Dom_storage = require("rescript/lib/js/dom_storage.js");
+var React$1 = require("@chakra-ui/react");
 
 function initTodos(todos) {
   if (todos !== undefined) {
@@ -92,15 +93,24 @@ function Todos(Props) {
                   Dom_storage.setItem("todos", x, localStorage);
                 }));
         }), [items]);
-  return React.createElement("div", undefined, React.createElement(CreateTodo.make, {
+  return React.createElement(React.Fragment, {
+              children: null
+            }, React.createElement(CreateTodo.make, {
                   onCreate: handleCreate
-                }), React.createElement("ul", undefined, items.map(function (t) {
-                      return React.createElement(TodoItem.make, {
-                                  todo: t,
-                                  onClick: handleClick,
-                                  key: String(t.text)
-                                });
-                    })));
+                }), React.createElement(React$1.Box, {
+                  children: React.createElement(React$1.VStack, {
+                        children: items.map(function (t) {
+                              return React.createElement(TodoItem.make, {
+                                          todo: t,
+                                          onClick: handleClick,
+                                          key: String(t.text)
+                                        });
+                            }),
+                        align: "baseline"
+                      }),
+                  maxW: "800px",
+                  m: "auto"
+                }));
 }
 
 var make = Todos;

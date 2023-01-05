@@ -6,16 +6,26 @@ let make = (~onCreate) => {
     let t = ReactEvent.Form.target(e)
     setValue(_ => t["value"])
   }
-
-  <form
-    onSubmit={e => {
-      ReactEvent.Form.preventDefault(e)
-      onCreate(value)
-      setValue(_ => "")
-    }}>
-    <div className="new-todo">
-      <input id="new-todo" onChange=handleChange value autoFocus=true placeholder="new task" />
-      <button role="submit"> {React.string("add new task")} </button>
-    </div>
-  </form>
+  <Chakra.Box maxW="800px" m="3rem auto">
+    <form
+      onSubmit={e => {
+        ReactEvent.Form.preventDefault(e)
+        onCreate(value)
+        setValue(_ => "")
+      }}>
+      <Chakra.Grid templateColumns="3fr 1fr" gap=4>
+        <Chakra.Input
+          colorScheme="green"
+          id="new-todo"
+          onChange=handleChange
+          value
+          autoFocus=true
+          placeholder="new task"
+        />
+        <Chakra.Button role="submit" \"type"="submit" colorScheme="green">
+          {React.string("add new task")}
+        </Chakra.Button>
+      </Chakra.Grid>
+    </form>
+  </Chakra.Box>
 }

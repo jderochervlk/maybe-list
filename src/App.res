@@ -8,9 +8,10 @@ let make = () => {
   let todos = React.useMemo(() => {
     Dom.Storage.getItem("todos", Dom_storage.localStorage)->Option.map(parseIntoTodos)
   })
-
-  <div>
-    <Header />
-    <Todos todos />
-  </div>
+  <Chakra.ChakraProvider>
+    <Chakra.Text fontFamily="Playfair Display" fontSize="large">
+      <Header />
+      <Todos todos />
+    </Chakra.Text>
+  </Chakra.ChakraProvider>
 }

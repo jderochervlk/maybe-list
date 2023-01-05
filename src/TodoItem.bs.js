@@ -3,25 +3,25 @@
 
 var Curry = require("rescript/lib/js/curry.js");
 var React = require("react");
+var Caml_option = require("rescript/lib/js/caml_option.js");
+var React$1 = require("@chakra-ui/react");
 
 function TodoItem(Props) {
   var todo = Props.todo;
   var onClick = Props.onClick;
   var handleClick = function (__) {
-    Curry._1(onClick, todo);
+    return Caml_option.some(Curry._1(onClick, todo));
   };
   var $$class = todo.completed === false ? "" : "completed";
-  return React.createElement("li", {
-              className: $$class
-            }, React.createElement("label", {
-                  className: "container"
-                }, todo.text, React.createElement("input", {
-                      defaultChecked: todo.completed,
-                      type: "checkbox",
-                      onClick: handleClick
-                    }), React.createElement("span", {
-                      className: "checkmark"
-                    })));
+  return React.createElement(React$1.Checkbox, {
+              children: React.createElement("p", {
+                    className: $$class
+                  }, todo.text),
+              colorScheme: "green",
+              isChecked: todo.completed,
+              onChange: handleClick,
+              size: "lg"
+            });
 }
 
 var make = TodoItem;

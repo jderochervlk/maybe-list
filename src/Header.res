@@ -1,8 +1,8 @@
 @react.component
 let make = () =>
-  <React.Fragment>
-    <h1 className="header"> {React.string("Maybe List")} </h1>
-    <p>
+  <Chakra.Box maxW="500px" m="auto">
+    <Chakra.Text textAlign="center" fontSize="5xl"> {React.string("Maybe List")} </Chakra.Text>
+    <Chakra.Text pt={10}>
       {React.string("A todo app that deletes items if they haven't been completed in 24 hours.")}
-    </p>
-  </React.Fragment>
+    </Chakra.Text>
+  </Chakra.Box>

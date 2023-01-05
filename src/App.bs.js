@@ -6,6 +6,7 @@ var React = require("react");
 var Header = require("./Header.bs.js");
 var Belt_Option = require("rescript/lib/js/belt_Option.js");
 var Dom_storage = require("rescript/lib/js/dom_storage.js");
+var React$1 = require("@chakra-ui/react");
 
 function App(Props) {
   var todos = React.useMemo(function () {
@@ -13,9 +14,15 @@ function App(Props) {
                       return JSON.parse(prim);
                     }));
       });
-  return React.createElement("div", undefined, React.createElement(Header.make, {}), React.createElement(Todos.make, {
-                  todos: todos
-                }));
+  return React.createElement(React$1.ChakraProvider, {
+              children: React.createElement(React$1.Text, {
+                    children: null,
+                    fontFamily: "Playfair Display",
+                    fontSize: "large"
+                  }, React.createElement(Header.make, {}), React.createElement(Todos.make, {
+                        todos: todos
+                      }))
+            });
 }
 
 var make = App;

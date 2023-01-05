@@ -7,13 +7,10 @@ type todo = {
 
 @react.component
 let make = (~todo, ~onClick) => {
-  let handleClick = __ => onClick(todo)
+  let handleClick = __ => Some(onClick(todo))
   let class = todo.completed === false ? "" : "completed"
-  <li className=class>
-    <label className="container">
-      {React.string(todo.text)}
-      <input type_="checkbox" onClick=handleClick defaultChecked=todo.completed />
-      <span className="checkmark" />
-    </label>
-  </li>
+
+  <Chakra.Checkbox isChecked=todo.completed onChange=handleClick size="lg" colorScheme="green">
+    <p className=class> {React.string(todo.text)} </p>
+  </Chakra.Checkbox>
 }

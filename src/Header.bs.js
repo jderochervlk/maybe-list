@@ -2,13 +2,21 @@
 'use strict';
 
 var React = require("react");
+var React$1 = require("@chakra-ui/react");
 
 function Header(Props) {
-  return React.createElement(React.Fragment, {
-              children: null
-            }, React.createElement("h1", {
-                  className: "header"
-                }, "Maybe List"), React.createElement("p", undefined, "A todo app that deletes items if they haven't been completed in 24 hours."));
+  return React.createElement(React$1.Box, {
+              children: null,
+              maxW: "500px",
+              m: "auto"
+            }, React.createElement(React$1.Text, {
+                  children: "Maybe List",
+                  textAlign: "center",
+                  fontSize: "5xl"
+                }), React.createElement(React$1.Text, {
+                  children: "A todo app that deletes items if they haven't been completed in 24 hours.",
+                  pt: 10
+                }));
 }
 
 var make = Header;

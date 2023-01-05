@@ -55,13 +55,14 @@ let make = (~todos: option<array<todo>>) => {
     string->Belt.Option.forEach(x => Dom.Storage.setItem("todos", x, Dom_storage.localStorage))
     None
   }, [items])
-
-  <div>
+  <React.Fragment>
     <CreateTodo onCreate=handleCreate />
-    <ul>
-      {items
-      ->Js.Array2.map(t => <TodoItem todo=t onClick=handleClick key={Js.String.make(t.text)} />)
-      ->React.array}
-    </ul>
-  </div>
+    <Chakra.Box maxW="800px" m="auto">
+      <Chakra.VStack align="baseline">
+        {items
+        ->Js.Array2.map(t => <TodoItem todo=t onClick=handleClick key={Js.String.make(t.text)} />)
+        ->React.array}
+      </Chakra.VStack>
+    </Chakra.Box>
+  </React.Fragment>
 }
