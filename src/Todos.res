@@ -25,7 +25,6 @@ let make = (~todos: option<array<todo>>) => {
   let (items: array<TodoItem.todo>, setItems) = React.useState(_ => todos->initTodos)
 
   let handleClick = e => {
-    Js.Console.log(items)
     setItems(_items =>
       _items
       ->Js.Array2.filter(t => t.id != e.id)
@@ -35,15 +34,21 @@ let make = (~todos: option<array<todo>>) => {
   }
 
   let handleCreate = e => {
-    let time = Js.Date.now()
     let newTodo = {
       text: e,
-      createdAt: time,
+      createdAt: Js.Date.now(),
       completed: false,
       id: nextId(items),
     }
     setItems(x => x->Js.Array2.concat([newTodo])->sort)
   }
+
+  React.useEffect1(() => {
+    setItems(t =>
+      t->Js.Array2.filter(x => DateFns.differenceInHours(x.createdAt, Js.Date.now()) < 24.00)
+    )
+    None
+  }, [])
 
   React.useEffect1(() => {
     let string = items->Js.Json.stringifyAny

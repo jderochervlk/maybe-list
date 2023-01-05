@@ -37,6 +37,7 @@
     "rescript": "^10.0.1"
   },
   "dependencies": {
+    "date-fns": "^2.29.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

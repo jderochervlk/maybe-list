@@ -4,6 +4,7 @@
 var Curry = require("rescript/lib/js/curry.js");
 var React = require("react");
 var TodoItem = require("./TodoItem.bs.js");
+var DateFns = require("date-fns");
 var Belt_Array = require("rescript/lib/js/belt_Array.js");
 var CreateTodo = require("./CreateTodo.bs.js");
 var Belt_Option = require("rescript/lib/js/belt_Option.js");
@@ -54,7 +55,6 @@ function Todos(Props) {
   var setItems = match[1];
   var items = match[0];
   var handleClick = function (e) {
-    console.log(items);
     Curry._1(setItems, (function (_items) {
             return sort(_items.filter(function (t) {
                               return t.id !== e.id;
@@ -67,18 +67,25 @@ function Todos(Props) {
           }));
   };
   var handleCreate = function (e) {
-    var time = Date.now();
+    var newTodo_createdAt = Date.now();
     var newTodo_id = nextId(items);
     var newTodo = {
       text: e,
       completed: false,
-      createdAt: time,
+      createdAt: newTodo_createdAt,
       id: newTodo_id
     };
     Curry._1(setItems, (function (x) {
             return sort(x.concat([newTodo]));
           }));
   };
+  React.useEffect((function () {
+          Curry._1(setItems, (function (t) {
+                  return t.filter(function (x) {
+                              return DateFns.differenceInHours(x.createdAt, Date.now()) < 24.00;
+                            });
+                }));
+        }), []);
   React.useEffect((function () {
           var string = JSON.stringify(items);
           Belt_Option.forEach(string, (function (x) {
