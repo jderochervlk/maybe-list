@@ -33,7 +33,7 @@ function CreateTodo(Props) {
                       })
                   }, React.createElement(React$1.Grid, {
                         children: null,
-                        templateColumns: "3fr 1fr",
+                        templateColumns: "1fr auto",
                         gap: 4
                       }, React.createElement(React$1.Input, {
                             placeholder: "enter task name",

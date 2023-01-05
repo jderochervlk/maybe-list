@@ -16,7 +16,7 @@ let make = (~onCreate) => {
         onCreate(value)
         setValue(_ => "")
       }}>
-      <Chakra.Grid templateColumns="3fr 1fr" gap=4>
+      <Chakra.Grid templateColumns="1fr auto" gap=4>
         <Chakra.Input
           colorScheme="green"
           id="new-todo"
