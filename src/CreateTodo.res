@@ -1,3 +1,5 @@
+let isEmpty = t => t == ""
+
 @react.component
 let make = (~onCreate) => {
   let (value, setValue) = React.useState(_ => "")
@@ -10,6 +12,7 @@ let make = (~onCreate) => {
     <form
       onSubmit={e => {
         ReactEvent.Form.preventDefault(e)
+
         onCreate(value)
         setValue(_ => "")
       }}>
@@ -20,9 +23,10 @@ let make = (~onCreate) => {
           onChange=handleChange
           value
           autoFocus=true
-          placeholder="new task"
+          placeholder="enter task name"
         />
-        <Chakra.Button role="submit" \"type"="submit" colorScheme="green">
+        <Chakra.Button
+          role="submit" \"type"="submit" colorScheme="green" isDisabled={isEmpty(value)}>
           {React.string("add new task")}
         </Chakra.Button>
       </Chakra.Grid>

@@ -5,6 +5,10 @@ var Curry = require("rescript/lib/js/curry.js");
 var React = require("react");
 var React$1 = require("@chakra-ui/react");
 
+function isEmpty(t) {
+  return t === "";
+}
+
 function CreateTodo(Props) {
   var onCreate = Props.onCreate;
   var match = React.useState(function () {
@@ -32,7 +36,7 @@ function CreateTodo(Props) {
                         templateColumns: "3fr 1fr",
                         gap: 4
                       }, React.createElement(React$1.Input, {
-                            placeholder: "new task",
+                            placeholder: "enter task name",
                             value: value,
                             colorScheme: "green",
                             autoFocus: true,
@@ -42,7 +46,8 @@ function CreateTodo(Props) {
                             children: "add new task",
                             colorScheme: "green",
                             type: "submit",
-                            role: "submit"
+                            role: "submit",
+                            isDisabled: value === ""
                           }))),
               maxW: "800px",
               m: "3rem auto"
@@ -51,5 +56,6 @@ function CreateTodo(Props) {
 
 var make = CreateTodo;
 
+exports.isEmpty = isEmpty;
 exports.make = make;
 /* react Not a pure module */

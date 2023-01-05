@@ -46,6 +46,7 @@ module Button = {
     ~mt: option<string>=?,
     ~\"type": option<string>=?,
     ~role: option<string>=?,
+    ~isDisabled: option<bool>=?,
   ) => React.element = "Button"
 }
 
