@@ -1,6 +1,6 @@
 module ChakraProvider = {
   @react.component @module("@chakra-ui/react")
-  external make: (~children: React.element) => React.element = "ChakraProvider"
+  external make: (~children: React.element, ~theme: 'a) => React.element = "ChakraProvider"
 }
 
 module Box = {
@@ -92,3 +92,6 @@ module HStack = {
   @react.component @module("@chakra-ui/react")
   external make: (~children: React.element, ~align: option<string>=?) => React.element = "HStack"
 }
+
+@module("@chakra-ui/react")
+external extendTheme: (~theme: 'a) => 'b = "extendTheme"

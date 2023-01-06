@@ -8,24 +8,33 @@ var Belt_Option = require("rescript/lib/js/belt_Option.js");
 var Dom_storage = require("rescript/lib/js/dom_storage.js");
 var React$1 = require("@chakra-ui/react");
 
+var theme = React$1.extendTheme({
+  styles: {
+    global: {
+      "html, body": {
+        fontFamily: "Playfair Display",
+        fontSize: "xl"
+      }
+    }
+  }
+});
+
 function App(Props) {
   var todos = React.useMemo(function () {
-        return Belt_Option.map(Dom_storage.getItem("todos", localStorage), (function (prim) {
-                      return JSON.parse(prim);
-                    }));
-      });
+    return Belt_Option.map(Dom_storage.getItem("todos", localStorage), (function (prim) {
+      return JSON.parse(prim);
+    }));
+  });
   return React.createElement(React$1.ChakraProvider, {
-              children: React.createElement(React$1.Text, {
-                    children: null,
-                    fontFamily: "Playfair Display",
-                    fontSize: "large"
-                  }, React.createElement(Header.make, {}), React.createElement(Todos.make, {
-                        todos: todos
-                      }))
-            });
+    children: null,
+    theme: theme
+  }, React.createElement(Header.make, {}), React.createElement(Todos.make, {
+    todos: todos
+  }));
 }
 
 var make = App;
 
+exports.theme = theme;
 exports.make = make;
-/* Todos Not a pure module */
+/* theme Not a pure module */
