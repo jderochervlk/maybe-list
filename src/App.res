@@ -9,6 +9,8 @@ let theme = Chakra.extendTheme(
       "global": {
         "html, body": {
           "fontFamily": "Playfair Display",
+          "fontSize": "xl",
+          "color": "#444",
         },
       },
     },

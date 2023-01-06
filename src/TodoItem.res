@@ -14,3 +14,5 @@ let make = (~todo, ~onClick) => {
     <p className=class> {React.string(todo.text)} </p>
   </Chakra.Checkbox>
 }
+
+let make = React.memo(make)

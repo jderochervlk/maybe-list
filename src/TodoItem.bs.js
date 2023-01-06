@@ -24,7 +24,7 @@ function TodoItem(Props) {
             });
 }
 
-var make = TodoItem;
+var make = React.memo(TodoItem);
 
 exports.make = make;
-/* react Not a pure module */
+/* make Not a pure module */

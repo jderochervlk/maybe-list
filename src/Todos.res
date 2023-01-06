@@ -64,7 +64,7 @@ let make = (~todos: option<array<todo>>) => {
     string->Belt.Option.forEach(x => Dom.Storage.setItem("todos", x, Dom_storage.localStorage))
     None
   }, [items])
-  <React.Fragment>
+  <>
     <CreateTodo onCreate=handleCreate />
     <Chakra.Box maxW="800px" m="auto">
       <Chakra.VStack align="baseline">
@@ -73,5 +73,5 @@ let make = (~todos: option<array<todo>>) => {
         ->React.array}
       </Chakra.VStack>
     </Chakra.Box>
-  </React.Fragment>
+  </>
 }

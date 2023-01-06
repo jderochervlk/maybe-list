@@ -9,28 +9,29 @@ var Dom_storage = require("rescript/lib/js/dom_storage.js");
 var React$1 = require("@chakra-ui/react");
 
 var theme = React$1.extendTheme({
-  styles: {
-    global: {
-      "html, body": {
-        fontFamily: "Playfair Display",
-        fontSize: "xl"
+      styles: {
+        global: {
+          "html, body": {
+            fontFamily: "Playfair Display",
+            fontSize: "xl",
+            color: "#444"
+          }
+        }
       }
-    }
-  }
-});
+    });
 
 function App(Props) {
   var todos = React.useMemo(function () {
-    return Belt_Option.map(Dom_storage.getItem("todos", localStorage), (function (prim) {
-      return JSON.parse(prim);
-    }));
-  });
+        return Belt_Option.map(Dom_storage.getItem("todos", localStorage), (function (prim) {
+                      return JSON.parse(prim);
+                    }));
+      });
   return React.createElement(React$1.ChakraProvider, {
-    children: null,
-    theme: theme
-  }, React.createElement(Header.make, {}), React.createElement(Todos.make, {
-    todos: todos
-  }));
+              children: null,
+              theme: theme
+            }, React.createElement(Header.make, {}), React.createElement(Todos.make, {
+                  todos: todos
+                }));
 }
 
 var make = App;

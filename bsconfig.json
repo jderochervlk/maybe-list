@@ -11,7 +11,12 @@
   },
   "reason": { "react-jsx": 3 },
   "suffix": ".bs.js",
-  "bs-dependencies": ["@rescript/react", "@glennsl/rescript-jest", "bs-dom-testing-library"],
+  "jsx": { "version": 4, "mode": "classic" },
+  "bs-dependencies": [
+    "@rescript/react",
+    "@glennsl/rescript-jest",
+    "bs-dom-testing-library"
+  ],
   "warnings": {
     "error": "+101"
   }

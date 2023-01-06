@@ -53,8 +53,8 @@ function CreateTodo(Props) {
             });
 }
 
-var make = CreateTodo;
+var make = React.memo(CreateTodo);
 
 exports.isEmpty = isEmpty;
 exports.make = make;
-/* react Not a pure module */
+/* make Not a pure module */

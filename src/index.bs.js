@@ -3,12 +3,8 @@
 
 var App = require("./App.bs.js");
 var React = require("react");
-var ReactDom = require("react-dom");
+var Client = require("react-dom/client");
 
-var root = document.querySelector("#root");
+Client.createRoot(document.getElementById("root")).render(React.createElement(App.make, {}));
 
-if (!(root == null)) {
-  ReactDom.render(React.createElement(App.make, {}), root);
-}
-
-/* root Not a pure module */
+/*  Not a pure module */

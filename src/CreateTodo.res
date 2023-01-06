@@ -31,3 +31,5 @@ let make = (~onCreate) => {
     </form>
   </Chakra.Box>
 }
+
+let make = React.memo(make)

@@ -97,9 +97,7 @@ function Todos(Props) {
                   Dom_storage.setItem("todos", x, localStorage);
                 }));
         }), [items]);
-  return React.createElement(React.Fragment, {
-              children: null
-            }, React.createElement(CreateTodo.make, {
+  return React.createElement(React.Fragment, undefined, React.createElement(CreateTodo.make, {
                   onCreate: handleCreate
                 }), React.createElement(React$1.Box, {
                   children: React.createElement(React$1.VStack, {
